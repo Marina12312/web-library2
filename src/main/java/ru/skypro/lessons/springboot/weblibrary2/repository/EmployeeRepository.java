@@ -10,9 +10,8 @@ import java.util.Map;
 public interface EmployeeRepository {
     public List<Employee> getAllEmployees();
 
+    HashMap<Integer, Employee> getNewEmployees();
     void addEmployee();
     Employee getEmployeeById(int id) throws IOException;
     void deleteEmployee(int id) throws IOException;
-
-    HashMap<Integer, Employee> getNewEmployees();
 }

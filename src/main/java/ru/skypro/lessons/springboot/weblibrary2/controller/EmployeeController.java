@@ -4,7 +4,9 @@ import org.springframework.web.bind.annotation.*;
 import ru.skypro.lessons.springboot.weblibrary2.pojo.Employee;
 import ru.skypro.lessons.springboot.weblibrary2.service.EmployeeService;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("/employees")
 @RestController
@@ -44,11 +46,23 @@ public class EmployeeController {
 public void editEmployee(@PathVariable int id,@RequestBody Employee employee) {
     employeeService.getEmployeeById(id).setName(employee.getName());
     employeeService.getEmployeeById(id).setSalary(employee.getSalary());
-
 }
-@DeleteMapping
+    @GetMapping("/{id}")
+    public Employee getEmployeeById(@PathVariable int id) {
+        return employeeService.getEmployeeById(id);
+    }
+@DeleteMapping("/{id}")
     public void deleteEmployee(@PathVariable int id){
         employeeService.deleteEmployee(id);
         
 }
+    @GetMapping("/all-employee-new")
+    public HashMap<Integer, Employee> all() {
+        return employeeService.getAllNew();
+    }
+
+    @GetMapping("salaryHigherThan")
+    public List<Map.Entry<Integer, Employee>> salaryHigherThan(@RequestParam("salary") Integer compareSalary) {
+        return employeeService.salaryHigherThan(compareSalary);
+    }
 }

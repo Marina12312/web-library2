@@ -22,13 +22,21 @@ public class EmployeeRepositoryIml implements EmployeeRepository{
         return employeeList;
     }
     private final HashMap<Integer, Employee> employeeMap = new HashMap<>();
-
+    @Override
+    public HashMap<Integer, Employee> getNewEmployees() {
+        return employeeMap;
+    }
     @Override
     public void addEmployee() {
         Employee employee = new Employee("Лариса", 98_000);
         Employee employee1 = new Employee("Полина", 110_000);
         Employee employee2 = new Employee("Алиса", 89_000);
         Employee employee3 = new Employee("Влада", 101_000);
+        employeeMap.put(employee.getId(), employee);
+        employeeMap.put(employee1.getId(), employee1);
+        employeeMap.put(employee2.getId(), employee2);
+        employeeMap.put(employee3.getId(), employee3);
+
 
     }
 @SneakyThrows
@@ -50,10 +58,6 @@ public class EmployeeRepositoryIml implements EmployeeRepository{
 }
 
 
-    @Override
-    public HashMap<Integer, Employee> getNewEmployees() {
-        return employeeMap;
-    }
 
 
 }

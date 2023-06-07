@@ -6,6 +6,7 @@ import ru.skypro.lessons.springboot.weblibrary2.pojo.Employee;
 import ru.skypro.lessons.springboot.weblibrary2.repository.EmployeeRepository;
 
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -48,18 +49,26 @@ public class EmployeeServiceIml implements EmployeeService{
     }
 
     @Override
+    public HashMap<Integer, Employee> getAllNew() {
+        return employeeRepository.getNewEmployees();
+    }
+
+    @Override
     public void addEmployee() {
         employeeRepository.addEmployee();
     }
- @SneakyThrows
+
+    @SneakyThrows
     @Override
     public Employee getEmployeeById(int id) {
-       return employeeRepository.getEmployeeById(id);
+        return employeeRepository.getEmployeeById(id);
+
     }
-@SneakyThrows
+
+    @SneakyThrows
     @Override
     public void deleteEmployee(int id) {
-      employeeRepository.deleteEmployee(id);
+        employeeRepository.deleteEmployee(id);
 
     }
 
