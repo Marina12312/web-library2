@@ -47,35 +47,33 @@ public class EmployeeServiceIml implements EmployeeService{
                 .filter(a -> a.getSalary() > high / size)
                 .collect(Collectors.toList());
     }
-
     @Override
-    public HashMap<Integer, Employee> getAllNew() {
-        return employeeRepository.getNewEmployees();
+    public List<Employee> getEmployeesWithSalaryHigherThan(Integer salary) {
+        List<Employee> salaryEmployeeBigerThenSalary = getAllEmployees().stream().filter(i -> i.getSalary() >= salary).toList();
+        return salaryEmployeeBigerThenSalary;
     }
 
     @Override
-    public void addEmployee() {
-        employeeRepository.addEmployee();
-    }
-
-    @SneakyThrows
-    @Override
-    public Employee getEmployeeById(int id) {
-        return employeeRepository.getEmployeeById(id);
-
-    }
-
-    @SneakyThrows
-    @Override
-    public void deleteEmployee(int id) {
-        employeeRepository.deleteEmployee(id);
-
+    public List<Employee> getEmployeesByIdWithRequired(Integer id) {
+        List<Employee> getIdEmployee = getAllEmployees().stream().filter(i -> i.equals(getAllEmployees().get(id))).toList();
+        return getIdEmployee;
     }
 
     @Override
-    public List<Map.Entry<Integer, Employee>> salaryHigherThan(Integer than) {
-        return employeeRepository.getNewEmployees().entrySet().stream()
-                .filter(e -> e.getValue().getSalary() > than)
-                .collect(Collectors.toList());
+    public void deleteEmployeesWithId(Integer id) {
+        getAllEmployees().remove(id);
     }
+
+    @Override
+    public void addEmployee(Employee employee) {
+        getAllEmployees().add(employee);
+    }
+
+    @Override
+    public void editEmployee(int id) {
+        getAllEmployees().get(id);
+    }
+
+
+
 }

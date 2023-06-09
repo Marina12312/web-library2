@@ -38,31 +38,28 @@ public class EmployeeController {
     public List<Employee> getEmployeeHighSalary(){
         return employeeService.employeeHighSalary();
     }
-    @PostMapping
-    public void addNewEmployee(){
-        employeeService.addEmployee();
-    }
-    @PutMapping  ("/{id}")
-public void editEmployee(@PathVariable int id,@RequestBody Employee employee) {
-    employeeService.getEmployeeById(id).setName(employee.getName());
-    employeeService.getEmployeeById(id).setSalary(employee.getSalary());
-}
-    @GetMapping("/{id}")
-    public Employee getEmployeeById(@PathVariable int id) {
-        return employeeService.getEmployeeById(id);
-    }
-@DeleteMapping("/{id}")
-    public void deleteEmployee(@PathVariable int id){
-        employeeService.deleteEmployee(id);
-        
-}
-    @GetMapping("/all-employee-new")
-    public HashMap<Integer, Employee> all() {
-        return employeeService.getAllNew();
+    @GetMapping("/salaryHigherThan")
+    public List<Employee> getEmployeesWithSalaryHigherThan(@RequestParam("salary") Integer salary) {
+        return employeeService.getEmployeesWithSalaryHigherThan(salary);
     }
 
-    @GetMapping("salaryHigherThan")
-    public List<Map.Entry<Integer, Employee>> salaryHigherThan(@RequestParam("salary") Integer compareSalary) {
-        return employeeService.salaryHigherThan(compareSalary);
+    @GetMapping("{id}")
+    public List<Employee> getEmployeesByIdWithRequired(@PathVariable(required = false) Integer id) {
+        return employeeService.getEmployeesByIdWithRequired(id);
+    }
+
+    @DeleteMapping("{id}")//?
+    public void deleteEmployeesWithId(@PathVariable(required = false) Integer id) {
+        employeeService.deleteEmployeesWithId(id);
+    }
+
+    @PostMapping("/") //?
+    public void addEmployee(@RequestBody Employee employee) {
+        employeeService.addEmployee(employee);
+    }
+
+    @PutMapping("{id}") //?
+    public void editEmployee(@RequestBody int id) {
+        employeeService.editEmployee(id);
     }
 }

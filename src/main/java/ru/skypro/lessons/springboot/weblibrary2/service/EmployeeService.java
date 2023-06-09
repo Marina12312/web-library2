@@ -3,6 +3,7 @@ package ru.skypro.lessons.springboot.weblibrary2.service;
 import org.springframework.web.bind.annotation.RequestBody;
 import ru.skypro.lessons.springboot.weblibrary2.pojo.Employee;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,15 +14,15 @@ public interface EmployeeService {
     double minSalary();
     double maxSalary();
     List<Employee> employeeHighSalary();
-    HashMap<Integer, Employee> getAllNew();
 
-    void addEmployee();
+     List<Employee> getEmployeesWithSalaryHigherThan(Integer salary);
+     List<Employee> getEmployeesByIdWithRequired(Integer id);
+    void deleteEmployeesWithId(Integer id);
 
-    Employee getEmployeeById(int id);
+    void addEmployee(@RequestBody Employee employee);
+    void editEmployee(@RequestBody int id);
 
-    void deleteEmployee(int id);
 
-    List<Map.Entry<Integer, Employee>> salaryHigherThan(Integer than);
 
 
 

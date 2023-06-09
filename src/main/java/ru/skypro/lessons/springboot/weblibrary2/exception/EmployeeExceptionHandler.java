@@ -1,4 +1,4 @@
-package ru.skypro.lessons.springboot.weblibrary2.Exception;
+package ru.skypro.lessons.springboot.weblibrary2.exception;
 
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
