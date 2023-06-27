@@ -3,7 +3,6 @@ package ru.skypro.lessons.springboot.weblibrary2.pojo;
 import jakarta.persistence.*;
 
 @Entity
-
 public class Position {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
