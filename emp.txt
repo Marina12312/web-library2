@@ -1,0 +1,5 @@
+{
+  "id": 0,
+  "name": "Marina",
+  "salary": 6000
+}
