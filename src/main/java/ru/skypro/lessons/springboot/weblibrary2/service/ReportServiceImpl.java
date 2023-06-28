@@ -1,6 +1,7 @@
 package ru.skypro.lessons.springboot.weblibrary2.service;
 
 import aj.org.objectweb.asm.TypeReference;
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 import ru.skypro.lessons.springboot.weblibrary2.dto.EmployeeDTO;
@@ -15,6 +16,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -50,9 +52,9 @@ public class ReportServiceImpl implements ReportService {
 
 
     @Override
-    public void upload(File file) throws IOException {
+    public void upload(File file) throws IOException ,ClassNotFoundException{
         ObjectMapper objectMapper = new ObjectMapper();
-        List<EmployeeDTO> employeeDTOS = objectMapper.readValue(file, new TypeReference<>() {
+        List<EmployeeDTO> employeeDTOS = objectMapper.readValue(file,List.class); {
         };
         employeeService.addEmployee(employeeDTOS);
 
